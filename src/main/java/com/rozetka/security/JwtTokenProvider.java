@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.rozetka.exception.CustomException.EXPIRED_OR_INVALID_TOKEN;
+
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
@@ -31,7 +33,7 @@ public class JwtTokenProvider {
     private String secretKey;
 
     @Value("${spring.security.jwt.token.expire-length}")
-    private long validityInMilliseconds = 3600000; // 1h
+    private long validityInMilliseconds = 3600000;
 
     private final MyUserDetails myUserDetails;
 
@@ -44,11 +46,13 @@ public class JwtTokenProvider {
     public String createToken(String username, List<AppUserRole> appUserRoles) {
 
         Claims claims = Jwts.claims().setSubject(username);
+
         claims.put("auth", appUserRoles.stream()
                 .map(s -> new SimpleGrantedAuthority(s.getAuthority())).filter(Objects::nonNull)
                 .collect(Collectors.toList()));
 
         Date now = new Date();
+
         Date validity = new Date(now.getTime() + validityInMilliseconds);
 
         return Jwts.builder()
@@ -76,6 +80,7 @@ public class JwtTokenProvider {
         String bearerToken = req.getHeader("Authorization");
 
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+
             return bearerToken.substring(7);
         }
 
@@ -86,9 +91,12 @@ public class JwtTokenProvider {
 
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+
             return true;
+
         } catch (JwtException | IllegalArgumentException e) {
-            throw new CustomException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
+
+            throw new CustomException(EXPIRED_OR_INVALID_TOKEN, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

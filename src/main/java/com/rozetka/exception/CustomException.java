@@ -1,31 +1,16 @@
 package com.rozetka.exception;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-import java.io.Serial;
-
+@RequiredArgsConstructor
+@Getter
 public class CustomException extends RuntimeException{
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+    public static final String EXPIRED_OR_INVALID_TOKEN = "Expired or invalid JWT token";
 
     private final String message;
     private final HttpStatus httpStatus;
 
-    public CustomException(String message, HttpStatus httpStatus) {
-
-        this.message = message;
-        this.httpStatus = httpStatus;
-    }
-
-    @Override
-    public String getMessage() {
-
-        return message;
-    }
-
-    public HttpStatus getHttpStatus() {
-
-        return httpStatus;
-    }
 }
