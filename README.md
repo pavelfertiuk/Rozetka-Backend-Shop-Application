@@ -1,7 +1,6 @@
 # Rozetka-Online-Store-Backend-Application
 
-Online Shopping System has been developed on Java, Spring Boot and MySQL Database. There are two types of users available in the project.
-One is client who can search and buying the products and the second one is admin who can manage the products. After making a purchase, the client receives an order number.
+Online Shopping System has been developed on Java, Spring Boot and MySQL Database. There are two types of users available in the project. One is a client who can search and buy the products and the second one is an admin who can manage the products. After making a purchase, the client receives an order number.
 ___
 
 ## Features:
