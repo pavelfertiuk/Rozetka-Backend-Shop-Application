@@ -4,7 +4,7 @@ Online Shopping System has been developed on Java, Spring Boot and MySQL Databas
 ___
 
 ## Features:
-###### REST API
+REST API
 ###### Order process
 ###### Categories
 ###### Pagination
