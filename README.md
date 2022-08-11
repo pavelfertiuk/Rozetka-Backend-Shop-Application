@@ -5,21 +5,21 @@ ___
 
 ## Features:
 - REST API
-Order process
-Categories
-Pagination
-Dynamic search
+- Order process
+- Categories
+- Pagination
+- Dynamic search
 
 ___
 
 ## Technology
-Java 18
-Spring Boot 2.6.10
-MySQL
-Spring Security (JWT auth)
-Querydsl
-ModelMapper
-Maven
+- Java 18
+- Spring Boot 2.6.10
+- MySQL
+- Spring Security (JWT auth)
+- Querydsl
+- ModelMapper
+- Maven
 
 ___
 
